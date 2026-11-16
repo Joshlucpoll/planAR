@@ -1,0 +1,29 @@
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+      - planar-mongo_data:/data/db
+    ports:
+      - "27017:27017"  # Exposes MongoDB port to the host
+  minio:
+    image: minio/minio
+    restart: always
+    command: server /data --console-address ":9090"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD}
+    volumes:
+      - planar-minio_data:/data
+    ports:
+      - "9000:9000" # API port
+      - "9090:9090" # Console web UI port
+
+volumes:
+  planar-mongo_data:
+  planar-minio_data:
+
+

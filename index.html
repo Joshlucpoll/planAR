@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://launchar.app/sdk/v1?key=aXQrz4YNOJ88XRzzziGzG1ckxH6qXVNQ&redirect=true"></script>
+  <script src="https://unpkg.com/three@0.126.0/build/three.js"></script>
+</head>
+
+<body>
+  <script>
+    if (navigator.xr) {
+      navigator.xr.isSessionSupported("immersive-ar").then((isSupported) => {
+        if (isSupported) {
+          // userButton.addEventListener("click", onButtonClicked);
+          // userButton.textContent = "Enter XR";
+          // userButton.disabled = false;
+          navigator.xr.requestSession('immersive-ar', {
+            requiredFeatures: ['local', 'anchors', 'dom-overlay', 'hit-test'],
+          })
+        }
+      });
+    }
+
+  </script>
+</body>
+
+</html>
